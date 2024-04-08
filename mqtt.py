@@ -34,7 +34,7 @@ def handle_message(client: Client, userdata: Any, message: MQTTMessage) -> None:
     with mysql.cursor() as cursor:
         cursor.execute(
             "INSERT IGNORE INTO data(x, y, z, temp) VALUES(%s, %s, %s, %s)",
-            (int(payload[key]) for key in ('x', 'y', 'z', 'temp'))
+            [int(payload[key]) for key in ('x', 'y', 'z', 'temp')]
         )
 
 
