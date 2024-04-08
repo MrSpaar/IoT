@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT MQTT</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.webp" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="panel">
+            <div class="card">
+                <div>
+                    <span class="value" id="x">0</span>°
+                </div>
+                <img src="/static/img/x.webp" height="50">
+            </div>
+            <div class="card">
+                <div><span class="value" id="y">0</span>°</div>
+                <img src="/static/img/y.webp" height="50">
+            </div>
+            <div class="card">
+                <div><span class="value" id="z">0</span>°</div>
+                <img src="/static/img/z.webp" height="50">
+            </div>
+            <div class="card">
+                <div><span class="value" id="temp">0</span>°C</div>
+                <img src="/static/img/temp.webp" height="50">
+            </div>
+            <label class="card">
+                <span class="title">LED</span>
+                <img id="ledBtn" src="/static/img/led_off.webp" height="50" />
+                <input type="checkbox" onclick="updateLED(this)" />
+            </label>
+        </div>
+    
+        <canvas id="tempDiv"></canvas>
+    </div>
+
+    <div id="controls">
+        <input type="range" min="100" max="2000" value="1000" oninput="setRefreshRate(this)">
+        <output>1000ms</output>
+
+        <label>
+            <img src="/static/img/pause.webp" height="25" id="pauseImg">
+            <input type="checkbox" onclick="toggleAutoRefresh(this.checked)" id="pauseBtn">
+        </label>
+        <div>
+            <label>
+                <img src="/static/img/trash.webp" height="25" id="trashIcon">
+                <input type="checkbox" onclick="toggleClear()" id="trashBtn">
+            </label>
+            <label id="confirm">
+                <img src="/static/img/check.webp" height="25">
+                <input type="button" onclick="clearData()">
+            </label>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
