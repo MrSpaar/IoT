@@ -1,7 +1,7 @@
 let chart = null;
 let lastEntry = null;
 
-const baseURL = "http://127.0.0.1:8000";
+const baseURL = "http://10.42.0.1:8000";
 
 const x    = document.getElementById("x");
 const y    = document.getElementById("y");
@@ -65,7 +65,7 @@ let intervalId = setInterval(getLive, refreshRate);
 
 let changeInterval = debounce((value) => {
     clearInterval(intervalId);
-    intervalId = setInterval(getGyro, value);
+    intervalId = setInterval(getLive, value);
 }, 500);
 
 function setRefreshRate(el) {

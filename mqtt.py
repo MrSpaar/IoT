@@ -3,7 +3,6 @@ from typing import Any, Tuple
 
 from flask_mqtt import Mqtt
 from flask_mysql import MySQL
-from livereload import Server
 from paho.mqtt.client import MQTTMessage, Client
 from flask import Flask, request, render_template
 
@@ -88,17 +87,13 @@ def toggle_led() -> Tuple[str, int]:
 
     state = request.args['state']
     if state in ('ON', 'OFF'):
-        # mqtt.publish('LED', state)
+        mqtt.publish('LED', state)
         return f"{state}\n", 200
 
     return f"Invalid state: {state}\n", 400
 
 
 if __name__ == "__main__":
-    # mqtt.init_app(app)
+    mqtt.init_app(app)
     mysql.init_app(app)
-
-    server = Server(app.wsgi_app)
-    server.watch("static/*")
-    server.watch("templates/*")
-    server.serve(port=8000, open_url_delay=0)
+    app.run(host="0.0.0.0", port=8000)
