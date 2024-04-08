@@ -102,8 +102,6 @@ Chart.defaults.borderColor = '#888';
 Chart.defaults.font.size = 14;
 Chart.defaults.font.weight = "bold";
 
-// Blue: #0075ff
-
 fetch(`${baseURL}/temps`)
     .then(res => res.json())
     .then(data => {
