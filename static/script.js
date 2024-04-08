@@ -53,7 +53,10 @@ function clearData() {
     trashBtn.checked = false;
     trashIcon.src = "/static/img/trash.webp";
     
-    fetch(`${baseURL}/clear`, { method: "POST" });
+    chart.data.labels = [];
+    chart.data.datasets[0].data = [];
+
+    chart.update();
 }
 
 function toggleClear() {
