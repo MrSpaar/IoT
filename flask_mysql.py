@@ -28,5 +28,8 @@ class MySQL:
             password=app.config['MYSQL_PASSWORD']
         )
 
+    def commit(self):
+        self.connection.commit()
+
     def cursor(self):
         return self.connection.cursor()

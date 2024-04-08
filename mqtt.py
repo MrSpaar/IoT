@@ -10,7 +10,7 @@ from flask import Flask, request, render_template
 app, mqtt, mysql = Flask(__name__), Mqtt(), MySQL()
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-app.config['MQTT_BROKER_URL'] = '100.64.177.74'
+app.config['MQTT_BROKER_URL'] = 'localhost'
 app.config['MQTT_BROKER_PORT'] = 1883
 app.config['MQTT_USERNAME'] = 'admin'
 app.config['MQTT_PASSWORD'] = '012345678'
@@ -36,6 +36,8 @@ def handle_message(client: Client, userdata: Any, message: MQTTMessage) -> None:
             "INSERT IGNORE INTO data(x, y, z, temp) VALUES(%s, %s, %s, %s)",
             [int(payload[key]) for key in ('x', 'y', 'z', 'temp')]
         )
+
+    mysql.commit()
 
 
 @app.get("/")
